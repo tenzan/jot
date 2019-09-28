@@ -25,7 +25,7 @@ class ContactsTest extends TestCase
 
         $this->assertEquals('Test Name', $contact->name);
         $this->assertEquals('test@example.com', $contact->email);
-        $this->assertEquals('05/14/1988', $contact->birthday);
+        $this->assertEquals('05/14/1988', $contact->birthday->format('m/d/Y'));
         $this->assertEquals('ABC String', $contact->company);
     }
 
