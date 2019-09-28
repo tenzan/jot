@@ -62,7 +62,7 @@ class ContactsTest extends TestCase
 
         $this->assertCount(1, Contact::all());
         $this->assertInstanceOf(Carbon::class, Contact::first()->birthday);
-        $this->assertEquals('05-14-1998', Contact::first()->birthday->format('m-d-Y'));
+        $this->assertEquals('05-14-1988', Contact::first()->birthday->format('m-d-Y'));
     }
 
     private function data()
