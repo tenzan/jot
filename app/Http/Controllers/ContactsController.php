@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 
 class ContactsController extends Controller
 {
@@ -15,6 +16,13 @@ class ContactsController extends Controller
             'birthday' => 'required',
             'company' => 'required',
         ]);
+
         Contact::create($data);
+
+    }
+
+    public function show(Contact $contact)
+    {
+        return $contact;
     }
 }
