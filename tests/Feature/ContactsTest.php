@@ -33,7 +33,7 @@ class ContactsTest extends TestCase
         $contact = factory(Contact::class)->create(['user_id' => $user->id]);
         $anotherContact = factory(Contact::class)->create(['user_id' => $anotherUser->id]);
 
-        $response = $this->get('/api/contacts?api_token' . $user->api_token);
+        $response = $this->get('/api/contacts?api_token=' . $user->api_token);
 
         $response->assertJsonCount(1);
     }
