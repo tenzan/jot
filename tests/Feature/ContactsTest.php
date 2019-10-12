@@ -27,6 +27,8 @@ class ContactsTest extends TestCase
     /** @test */
     public function a_list_of_contacts_can_be_fetched_for_authenticated_user()
     {
+        $this->withoutExceptionHandling();
+
         $user = factory(User::class)->create();
         $anotherUser = factory(User::class)->create();
 
@@ -35,7 +37,7 @@ class ContactsTest extends TestCase
 
         $response = $this->get('/api/contacts?api_token=' . $user->api_token);
 
-        $response->assertJsonCount(1);
+        $response->assertJsonCount(1)->assertJson([['id' => $contact->id]]);
     }
 
     /** @test */
