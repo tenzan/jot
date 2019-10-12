@@ -27,8 +27,6 @@ class ContactsTest extends TestCase
     /** @test */
     public function a_list_of_contacts_can_be_fetched_for_authenticated_user()
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(User::class)->create();
         $anotherUser = factory(User::class)->create();
 
@@ -89,8 +87,6 @@ class ContactsTest extends TestCase
     /** @test */
     public function birthdays_are_properly_stored()
     {
-        $this->withoutExceptionHandling();
-
         $response = $this->post('/api/contacts',
             array_merge($this->data()));
 
@@ -130,9 +126,7 @@ class ContactsTest extends TestCase
     /** @test */
     public function a_contact_can_be_patched()
     {
-
-        $this->withoutExceptionHandling();
-        $contact = factory(Contact::class)->create();
+        $contact = factory(Contact::class)->create(['user_id' => $this->user->id]);
 
         $response = $this->patch('/api/contacts/' . $contact->id, $this->data());
 
@@ -145,13 +139,36 @@ class ContactsTest extends TestCase
     }
 
     /** @test */
-    public function a_contact_can_be_deleted()
+    public function only_the_owner_of_the_contact_can_path_the_contact()
     {
         $contact = factory(Contact::class)->create();
+        $anotherUser =factory(User::class)->create();
+
+        $response = $this->patch('/api/contacts/' . $contact->id,
+            array_merge($this->data(), ['api_token' => $anotherUser->api_token]));
+
+        $response->assertStatus(403);
+    }
+
+    /** @test */
+    public function a_contact_can_be_deleted()
+    {
+        $contact = factory(Contact::class)->create(['user_id' => $this->user->id]);
 
         $response = $this->delete('/api/contacts/' . $contact->id, ['api_token' => $this->user->api_token]);
 
         $this->assertCount(0, Contact::all());
+    }
+
+    /** @test */
+    public function only_the_owner_can_delete_the_contact()
+    {
+        $contact = factory(Contact::class)->create();
+        $anotherUser =factory(User::class)->create();
+
+        $response = $this->delete('/api/contacts/' . $contact->id, ['api_token' => $this->user->api_token]);
+
+        $response->assertStatus(403);
     }
 
     private function data()
