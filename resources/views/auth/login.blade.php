@@ -19,16 +19,14 @@
                     <label for="email"
                            class="uppercase text-blue-500 text-xs font-bold absolute pl-3 pt-2">E-Mail</label>
 
-                    <div class="">
+                    <div>
                         <input id="email" type="email"
                                class="pt-8 w-full rounded p-3 bg-blue-800 text-gray-100 outline-none focus:bg-blue-700"
-                               name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                               placeholder="your@email.com">
+                               name="email" value="{{ old('email') }}" autocomplete="email"
+                               autofocus placeholder="your@email.com">
 
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <span class="text-red-600 text-sm pt-1" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
                 </div>
@@ -37,46 +35,38 @@
                     <label for="password"
                            class="uppercase text-blue-500 text-xs font-bold absolute pl-3 pt-2">Password</label>
 
-                    <div class="">
+                    <div>
                         <input id="password" type="password"
                                class="pt-8 w-full rounded p-3 bg-blue-800 text-gray-100 outline-none focus:bg-blue-700"
-                               name="password" required
-                               autocomplete="current-password" autofocus
-                               placeholder="password">
+                               name="password" autocomplete="current-password"
+                               autofocus placeholder="password">
 
                         @error('password')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <span class="text-red-600 text-sm pt-1" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
                 </div>
 
                 <div class="pt-2">
-                    <div class="col-md-6 offset-md-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember"
-                                   id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                            <label class="text-white" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
+                    <label class="text-white" for="remember">Remember Me</label>
                 </div>
 
-                <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
-                        </button>
+                <div class="pt-8">
+                    <button type="submit"
+                            class="bg-gray-400 py-2 px-3 text-left w-full uppercase rounded text-blue-800 font-bold">
+                        Login
+                    </button>
+                </div>
 
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
-                    </div>
+                <div class="flex justify-between pt-8 text-white text-sm font-bold">
+                    <a class="" href="{{ route('password.request') }}">
+                        Forgot Your Password?
+                    </a>
+                    <a class="" href="{{ route('register') }}">
+                        Register
+                    </a>
                 </div>
             </form>
 
