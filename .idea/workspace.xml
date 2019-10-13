@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="447e6de0-897c-4906-a51e-89920b6d4feb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contact.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Contact.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ContactsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ContactsTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
