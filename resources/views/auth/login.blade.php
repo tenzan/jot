@@ -33,13 +33,16 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                <div class="relative pt-3">
+                    <label for="password"
+                           class="uppercase text-blue-500 text-xs font-bold absolute pl-3 pt-2">Password</label>
 
-                    <div class="col-md-6">
+                    <div class="">
                         <input id="password" type="password"
-                               class="form-control @error('password') is-invalid @enderror" name="password" required
-                               autocomplete="current-password">
+                               class="pt-8 w-full rounded p-3 bg-blue-800 text-gray-100 outline-none focus:bg-blue-700"
+                               name="password" required
+                               autocomplete="current-password" autofocus
+                               placeholder="password">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -49,13 +52,13 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="pt-2">
                     <div class="col-md-6 offset-md-4">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember"
                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                            <label class="form-check-label" for="remember">
+                            <label class="text-white" for="remember">
                                 {{ __('Remember Me') }}
                             </label>
                         </div>
