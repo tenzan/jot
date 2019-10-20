@@ -2403,6 +2403,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContactsShow",
@@ -2417,13 +2427,29 @@ __webpack_require__.r(__webpack_exports__);
       _this.loading = false;
     })["catch"](function (error) {
       _this.loading = false;
+
+      if (error.response.status === 404) {
+        _this.$router.push('/contacts');
+      }
     });
   },
   data: function data() {
     return {
       loading: true,
+      modal: false,
       contact: null
     };
+  },
+  methods: {
+    destroy: function destroy() {
+      var _this2 = this;
+
+      axios["delete"]('/api/contacts/' + this.$route.params.id).then(function (response) {
+        _this2.$router.push('/contacts');
+      })["catch"](function (error) {
+        alert('Internal Error. Unable to delete contact.');
+      });
+    }
   }
 });
 
@@ -21536,6 +21562,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
+              { staticClass: "relative" },
               [
                 _c(
                   "router-link",
@@ -21554,13 +21581,76 @@ var render = function() {
                   {
                     staticClass:
                       "px-4 py-2 rounded text-red-500 border border-red-500 text-sm font-bold",
-                    attrs: { href: "#" }
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.modal = !_vm.modal
+                      }
+                    }
                   },
                   [_vm._v("Delete")]
-                )
+                ),
+                _vm._v(" "),
+                _vm.modal
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "absolute bg-blue-900 text-white text-white rounded-lg z-20 p-8 w-64 right-0 mt-2 mr-6"
+                      },
+                      [
+                        _c("p", [
+                          _vm._v("Are you sure you want to delete this record?")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "flex items-centered mt-6 justify-end"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "text-white pr-4",
+                                on: {
+                                  click: function($event) {
+                                    _vm.modal = !_vm.modal
+                                  }
+                                }
+                              },
+                              [_vm._v("Cancel")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "px-4 py-2 bg-red-500 rounded text-sm font-bold",
+                                on: { click: _vm.destroy }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e()
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _vm.modal
+              ? _c("div", {
+                  staticClass:
+                    "bg-black opacity-25 absolute right-0 left-0 top-0 bottom-0 z-10",
+                  on: {
+                    click: function($event) {
+                      _vm.modal = !_vm.modal
+                    }
+                  }
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
