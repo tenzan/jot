@@ -43,7 +43,11 @@
                     <div>
                         Contacts
                     </div>
-                    <UserCircle :name="user.name" />
+                    <div>
+                        <SearchBar />
+                        <UserCircle :name="user.name" />
+                    </div>
+
                 </div>
 
                 <div class="flex flex-col overflow-y-hidden flex-1">
@@ -58,6 +62,7 @@
 
 <script>
     import UserCircle from "./UserCircle";
+    import SearchBar from "./SearchBar";
 
     export default {
         name: "App",
@@ -67,7 +72,8 @@
         ],
 
         components: {
-            UserCircle
+            UserCircle,
+            SearchBar
         },
 
         created() {
