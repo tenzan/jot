@@ -1,5 +1,6 @@
 <template>
-    <div class="">
+    <div>
+        Welcome to Jot!
     </div>
 </template>
 
